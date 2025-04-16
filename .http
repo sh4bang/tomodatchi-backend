@@ -1,0 +1,24 @@
+###
+GET http://localhost:3000 HTTP/1.1
+
+
+###
+GET http://localhost:3000/auth?username=admisn&password=Password123! HTTP/1.1
+h-Custom: asdfjhsdkjfh
+
+
+###
+GET http://localhost:3000/animals HTTP/1.1
+
+
+###
+GET http://localhost:3000/animals/Dog HTTP/1.1
+
+
+###
+POST http://localhost:3000/animals HTTP/1.1
+content-type: application/json
+
+{
+    "animal": "Dog"
+}

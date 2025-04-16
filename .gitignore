@@ -1,0 +1,37 @@
+# Node.js
+node_modules/
+.env
+.env.*
+!.env.dist
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+build/
+coverage/
+logs/
+*.log
+
+# TypeScript (si tu l'utilises)
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# VS Code
+.vscode/
+.history/
+*.code-workspace
+
+# Mac / Linux / Windows system files
+.DS_Store
+Thumbs.db
+
+# Optional: PM2 logs
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Optional: Docker
+docker-compose.override.yml
+.docker/
