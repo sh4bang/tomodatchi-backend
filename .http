@@ -1,24 +1,42 @@
 ###
 GET http://localhost:3000 HTTP/1.1
 
-
 ###
 GET http://localhost:3000/auth?username=admisn&password=Password123! HTTP/1.1
 h-Custom: asdfjhsdkjfh
 
+###
+GET http://localhost:3000/users HTTP/1.1
 
 ###
-GET http://localhost:3000/animals HTTP/1.1
-
-
-###
-GET http://localhost:3000/animals/Dog HTTP/1.1
-
+GET http://localhost:3000/users/me HTTP/1.1
 
 ###
-POST http://localhost:3000/animals HTTP/1.1
+POST http://localhost:3000/users HTTP/1.1
 content-type: application/json
 
 {
-    "animal": "Dog"
+    "email": "jane.doe@gmail.com",
+    "password": "p123",
+    "firstName": "John",
+    "lastName": "Doe"
 }
+
+###
+PUT http://localhost:3000/users/68011bd90223749f4ed94e19 HTTP/1.1
+content-type: application/json
+
+{
+    "email": "jane.doe@gmail.com",
+    "password": "pwd123!",
+    "firstName": "Jane",
+    "lastName": "Doe"
+}
+
+###
+POST http://localhost:3000/users/login HTTP/1.1
+
+###
+POST http://localhost:3000/users/logout HTTP/1.1
+
+

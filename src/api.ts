@@ -1,13 +1,18 @@
-import { config } from './configs/index.js';
-import Fastify, { FastifyInstance, RouteShorthandOptions } from 'fastify'
-import routes from './routes/api.routes.js'
-import dbConnector from './services/mongodb-connector.js'
+import { config } from './configs/index.js'
+import Fastify, { FastifyInstance } from 'fastify'
+
+import routes from './routes/index.js'
+
+import { envToLogger } from './utils/logger.js'
+import mongoose from './plugins/mongoose.js'
+import authPlugin from './plugins/auth.js'
 
 const fastify: FastifyInstance = Fastify({
-  logger: true
+  logger: envToLogger[config.appEnv] ?? true
 })
 
-fastify.register(dbConnector)
+fastify.register(mongoose)
+fastify.register(authPlugin)
 fastify.register(routes)
 
 const start = async () => {
