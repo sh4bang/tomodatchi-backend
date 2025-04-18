@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt"
 
-import fastify, { FastifyReply, FastifyRequest } from "fastify"
+import { FastifyReply, FastifyRequest } from "fastify"
 
 import User from "../../models/User.js"
 
@@ -25,7 +25,7 @@ const loginUsersController = async (
         } as ApiResponse<null>)
     }
 
-    const user = await User.findOne({ email }, { password: 1 })
+    const user = await User.findOne({ email }, { password: 1, role: 1 })
     if (!user) {
         return reply.status(401).send({
             success: false,
@@ -46,7 +46,10 @@ const loginUsersController = async (
     }
     
     // Generate JWT token
-    const token = request.server.jwt.sign({ id: user._id }, { expiresIn: '15m' })
+    const token = request.server.jwt.sign({
+        _id: user._id,
+        role: user.role
+    })
 
     reply.send({
         success: true,

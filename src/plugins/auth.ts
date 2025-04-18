@@ -1,8 +1,10 @@
-import fp from 'fastify-plugin';
+import fp from 'fastify-plugin'
 import jwt from '@fastify/jwt'
-import { FastifyPluginAsync } from 'fastify'
 
-import { config } from '../configs/index.js';
+import { config } from '../configs/index.js'
+
+import type { FastifyPluginAsync, FastifyReply, FastifyRequest } from 'fastify'
+import type ApiResponse from '../types/api-response.js'
 
 // TODO : check declare module
 declare module 'fastify' {
@@ -19,11 +21,17 @@ const authPlugin: FastifyPluginAsync = async (fastify) => {
         }
     })
 
-    fastify.decorate("authenticate", async (request, reply) => {
+    fastify.decorate("authenticate", async (request: FastifyRequest, reply: FastifyReply) => {
         try {
-          await request.jwtVerify()
+            await request.jwtVerify()
         } catch (err) {
-          reply.send(err)
+            reply.send({
+                success: false,
+                error: {
+                    message: `Unauthorized : ${err}`,
+                    statusCode: 401
+                }
+            } as ApiResponse<null>)
         }
     })
 }

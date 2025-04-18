@@ -10,6 +10,7 @@ GET http://localhost:3000/users HTTP/1.1
 
 ###
 GET http://localhost:3000/users/me HTTP/1.1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAyOTQ4MWY4YjFmYzA3ZDAzYzYwOWMiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0NTAxMDM0MSwiZXhwIjoxNzQ1MDExMjQxfQ.XQPHEjo8Im24PjJRQUbqonRxhAa-9ASxWmIXXwckOqA
 
 ###
 POST http://localhost:3000/users HTTP/1.1
