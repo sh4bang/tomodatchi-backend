@@ -1,8 +1,9 @@
 import fp from 'fastify-plugin'
 import mongoose from 'mongoose'
-import { type FastifyPluginAsync } from 'fastify'
 
 import { config } from '../configs/index.js'
+
+import { type FastifyPluginAsync } from 'fastify'
 
 const mongoosePlugin: FastifyPluginAsync = async (fastify) => {
     await mongoose.connect(config.mongoUri)

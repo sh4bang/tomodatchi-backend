@@ -1,14 +1,46 @@
+import bcrypt from "bcrypt"
+
 import { FastifyReply, FastifyRequest } from "fastify"
 
 import User from "../../models/User.js"
 
-const createUsersController = async (request: FastifyRequest, reply: FastifyReply) => {
-    const newUser = await User.insertOne(request.body)
-    if (!newUser) {
-        return reply.status(400).send({ message: "User not created" })
+import type { UserType } from "../../models/User.js"
+import type ApiResponse from "../../types/api-response.js"
+
+type CreateUsersBody = Pick<UserType, "email" | "password" | "firstName" | "lastName">
+
+const createUsersController = async (request: FastifyRequest<{Body: CreateUsersBody}>, reply: FastifyReply) => {
+    const { email, password, firstName, lastName } = request.body
+
+    if (!email || !password || !firstName || !lastName) {
+        return reply.status(400).send({
+            success: false,
+            error: {
+                message: 'Fields "email", "password", "firstName", "lastName" are required'
+            }
+        } as ApiResponse<null>)
     }
 
-    reply.status(201).send(newUser)
+    const newUser = await User.insertOne({
+        email,
+        password: await bcrypt.hash(password, 10),
+        firstName,
+        lastName
+    })
+
+    if (!newUser) {
+        return reply.status(400).send({
+            success: false,
+            error: {
+                message: "User creation failed"
+            }
+        } as ApiResponse<null>)
+    }
+
+    reply.status(201).send({
+        success: true,
+        data: newUser
+    } as ApiResponse<UserType>)
 }
 
 export default createUsersController

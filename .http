@@ -5,7 +5,7 @@ GET http://localhost:3000 HTTP/1.1
 GET http://localhost:3000/auth?username=admisn&password=Password123! HTTP/1.1
 h-Custom: asdfjhsdkjfh
 
-###
+### ----- USER -------------------------------
 GET http://localhost:3000/users HTTP/1.1
 
 ###
@@ -16,25 +16,31 @@ POST http://localhost:3000/users HTTP/1.1
 content-type: application/json
 
 {
-    "email": "jane.doe@gmail.com",
-    "password": "p123",
+    "email": "john.doe@gmail.com",
+    "password": "pass123",
     "firstName": "John",
     "lastName": "Doe"
 }
 
 ###
-PUT http://localhost:3000/users/68011bd90223749f4ed94e19 HTTP/1.1
+PUT http://localhost:3000/users/68025012135b4c8b5523bbb9 HTTP/1.1
 content-type: application/json
 
 {
-    "email": "jane.doe@gmail.com",
-    "password": "pwd123!",
-    "firstName": "Jane",
-    "lastName": "Doe"
+    "firstName": "Jane"
 }
 
 ###
+DELETE http://localhost:3000/users/6802545da626dab16f7cb884 HTTP/1.1
+
+###
 POST http://localhost:3000/users/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "john.doe@gmail.com",
+    "password": "pass123"
+}
 
 ###
 POST http://localhost:3000/users/logout HTTP/1.1

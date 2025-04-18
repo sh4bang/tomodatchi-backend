@@ -4,6 +4,7 @@ import petRoutes from "./pets/index.js";
 import userRoutes from "./users/index.js";
 
 const routes: FastifyPluginAsync = async (fastify) => {
+    //TODO: remove or redo this
     fastify.get('/', async (request, reply) => {
         return { hello: 'world' }
     })

@@ -1,6 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify"
 
 import User, { UserType } from "../../models/User.js"
+import type ApiResponse from "../../types/api-response.js"
 
 interface UpdateUsersParams {
     id: string
@@ -18,10 +19,18 @@ const updateUsersController = async (
 
     const updatedUser = await User.findByIdAndUpdate(id, updatedData, { new: true })
     if (!updatedUser) {
-        return reply.status(400).send({ message: "User not updated" })
+        return reply.status(400).send({
+            success: false,
+            error: {
+                message: "User not updated"
+            }
+        } as ApiResponse<null>)
     }
 
-    reply.status(200).send(updatedUser)
+    reply.status(200).send({
+        success: true,
+        data: updatedUser
+    } as ApiResponse<UserType>)
 }
 
 export default updateUsersController
