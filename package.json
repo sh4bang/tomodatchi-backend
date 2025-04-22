@@ -1,14 +1,15 @@
 {
   "name": "tomodatchi-backend",
   "version": "0.1.0",
-  "description": "An unpretentious tamagotchi like",
+  "description": "A tamagotchi-like game - Backend API",
   "type": "module",
   "main": "dist/api.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "build-watch": "tsc --watch",
+    "dev": "tsx watch src/api.ts",
     "start": "node dist/api.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsc --watch"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/node": "^22.14.1",
     "pino-pretty": "^13.0.0",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.3"
   }
 }

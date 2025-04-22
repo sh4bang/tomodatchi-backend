@@ -1,6 +1,6 @@
 # 🐾 Tomodatchi
 
-An unpretentious, nostalgic virtual pet game inspired by the Tamagotchi® devices.
+A nostalgic virtual pet game inspired by the Tamagotchi® devices.
 
 > **Disclaimer**: Tamagotchi is a registered trademark of Bandai.
 > This project is a fan-made game and is not affiliated with or endorsed by Bandai in any way.
@@ -17,10 +17,15 @@ An unpretentious, nostalgic virtual pet game inspired by the Tamagotchi® device
 ``` bash
     # build typescript once, using tsconfig.json
     npm run build
-    # Start the http server
-    npm start
-    # Build typescript and watch it
+    
+    # build typescript files in dist/ and watch for changes
+    npm run build-watch
+    
+    # Convert typescript files in memory (no write in /dist), exec api server and watch for changes
     npm run dev
+
+    # Start the api server from /dist files (like a prod env)
+    npm start
 ```
 
 ## License
