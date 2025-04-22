@@ -2,8 +2,6 @@ import { FastifyReply, FastifyRequest } from "fastify"
 
 import User, { UserType } from "../../models/User.js"
 
-import type ApiResponse from "../../types/api-response.js"
-
 const listUsersController = async (request: FastifyRequest, reply: FastifyReply) => {
     const users = await User.find({}, {}, {
         sort: {

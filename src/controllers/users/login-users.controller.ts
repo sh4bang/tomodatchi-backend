@@ -4,8 +4,6 @@ import { FastifyReply, FastifyRequest } from "fastify"
 
 import User from "../../models/User.js"
 
-import type ApiResponse from "../../types/api-response.js"
-
 interface LoginUsersBody {
     email: string
     password: string
@@ -47,7 +45,7 @@ const loginUsersController = async (
     
     // Generate JWT token
     const token = request.server.jwt.sign({
-        _id: user._id,
+        id: user._id.toString(),
         role: user.role
     })
 

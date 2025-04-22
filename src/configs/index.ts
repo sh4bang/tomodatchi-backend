@@ -7,6 +7,7 @@ type Config = {
     mongoUri: string
     appEnv: AppEnv
     jwtSecret: string
+    jwtExpire: string
 }
 
 export const config: Config = {
@@ -14,4 +15,5 @@ export const config: Config = {
     mongoUri: process.env.MONGO_URI || '',
     appEnv: process.env.APP_ENV as AppEnv || 'prod',
     jwtSecret: process.env.JWT_SECRET || '',
+    jwtExpire: process.env.JWT_EXPIRE || '15m'
 };

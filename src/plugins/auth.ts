@@ -4,20 +4,12 @@ import jwt from '@fastify/jwt'
 import { config } from '../configs/index.js'
 
 import type { FastifyPluginAsync, FastifyReply, FastifyRequest } from 'fastify'
-import type ApiResponse from '../types/api-response.js'
-
-// TODO : check declare module
-declare module 'fastify' {
-    interface FastifyInstance {
-        authenticate: any;
-    }
-}
 
 const authPlugin: FastifyPluginAsync = async (fastify) => {
     fastify.register(jwt, {
         secret: config.jwtSecret,
         sign: {
-            expiresIn: '15m',
+            expiresIn: config.jwtExpire,
         }
     })
 
@@ -25,11 +17,10 @@ const authPlugin: FastifyPluginAsync = async (fastify) => {
         try {
             await request.jwtVerify()
         } catch (err) {
-            reply.send({
+            reply.status(401).send({
                 success: false,
                 error: {
-                    message: `Unauthorized : ${err}`,
-                    statusCode: 401
+                    message: `Unauthorized : ${err}`
                 }
             } as ApiResponse<null>)
         }

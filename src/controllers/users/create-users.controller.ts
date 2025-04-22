@@ -5,12 +5,11 @@ import { FastifyReply, FastifyRequest } from "fastify"
 import User from "../../models/User.js"
 
 import type { UserType } from "../../models/User.js"
-import type ApiResponse from "../../types/api-response.js"
 
-type CreateUsersBody = Pick<UserType, "email" | "password" | "firstName" | "lastName">
+type CreateUsersBody = Pick<UserType, "email" | "password" | "firstName" | "lastName" | "role">
 
 const createUsersController = async (request: FastifyRequest<{Body: CreateUsersBody}>, reply: FastifyReply) => {
-    const { email, password, firstName, lastName } = request.body
+    const { email, password, firstName, lastName, role } = request.body
 
     if (!email || !password || !firstName || !lastName) {
         return reply.status(400).send({
@@ -25,7 +24,8 @@ const createUsersController = async (request: FastifyRequest<{Body: CreateUsersB
         email,
         password: await bcrypt.hash(password, 10),
         firstName,
-        lastName
+        lastName,
+        role: role || "user",
     })
 
     if (!newUser) {

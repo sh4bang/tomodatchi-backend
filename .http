@@ -10,16 +10,16 @@ GET http://localhost:3000/users HTTP/1.1
 
 ###
 GET http://localhost:3000/users/me HTTP/1.1
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAyOTQ4MWY4YjFmYzA3ZDAzYzYwOWMiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0NTAxMDM0MSwiZXhwIjoxNzQ1MDExMjQxfQ.XQPHEjo8Im24PjJRQUbqonRxhAa-9ASxWmIXXwckOqA
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDc5OGVkNTk2ZTA0YmI0NzYwYjc4MSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTMzMTk0MiwiZXhwIjoxNzQ1MzYwNzQyfQ.Bk5NQFLJwuZM0t2HVm9CtN4nz2yTP3MeTBk67dtoW3c
 
 ###
 POST http://localhost:3000/users HTTP/1.1
 content-type: application/json
 
 {
-    "email": "john.doe@gmail.com",
+    "email": "janeq.doe@gmail.com",
     "password": "pass123",
-    "firstName": "John",
+    "firstName": "Jane",
     "lastName": "Doe"
 }
 
@@ -39,7 +39,7 @@ POST http://localhost:3000/users/login HTTP/1.1
 content-type: application/json
 
 {
-    "email": "john.doe@gmail.com",
+    "email": "jane.doe@gmail.com",
     "password": "pass123"
 }
 

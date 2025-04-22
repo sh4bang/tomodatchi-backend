@@ -1,7 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify"
 
 import User, { UserType } from "../../models/User.js"
-import type ApiResponse from "../../types/api-response.js"
 
 interface UpdateUsersParams {
     id: string

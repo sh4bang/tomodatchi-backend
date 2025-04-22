@@ -6,6 +6,7 @@ import routes from './routes/index.js'
 import { envToLogger } from './utils/logger.js'
 import mongoose from './plugins/mongoose.js'
 import authPlugin from './plugins/auth.js'
+import adminAuthorization from './plugins/admin-authorization.js'
 
 const fastify: FastifyInstance = Fastify({
     logger: envToLogger[config.appEnv] ?? true
@@ -13,6 +14,7 @@ const fastify: FastifyInstance = Fastify({
 
 fastify.register(mongoose)
 fastify.register(authPlugin)
+fastify.register(adminAuthorization)
 fastify.register(routes)
 
 const start = async () => {
