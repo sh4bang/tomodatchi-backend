@@ -5,6 +5,7 @@ import updateUsersController from "../../controllers/users/update-users.controll
 const route: FastifyPluginAsync = async (fastify) => {
     fastify.put(
         '/:id',
+        { onRequest: [fastify.authenticate, fastify.adminAuthorized] },
         updateUsersController
     )}
 

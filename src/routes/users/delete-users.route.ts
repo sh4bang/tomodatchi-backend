@@ -5,6 +5,7 @@ import deleteUsersController from "../../controllers/users/delete-users.controll
 const route: FastifyPluginAsync = async (fastify) => {
     fastify.delete(
         '/:id',
+        { onRequest: [fastify.authenticate, fastify.adminAuthorized] },
         deleteUsersController
     )}
 

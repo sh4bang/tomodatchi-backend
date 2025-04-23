@@ -5,7 +5,8 @@ import createUsersController from "../../controllers/users/create-users.controll
 const route: FastifyPluginAsync = async (fastify) => {
     fastify.post(
         '/',
+        { onRequest: [fastify.authenticate, fastify.adminAuthorized] },
         createUsersController
     )}
 
-export default route;
+export default route

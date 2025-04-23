@@ -1,49 +1,52 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDkzNGZiNDY4MjE1Zjg3MjY5YzNmNiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTQzNTE5NSwiZXhwIjoxNzQ1NDYzOTk1fQ._zdnZ_JnNAW8CC2sfnrsfJu8ui2e3Vvra3xWrTiy_l8
+@fake_password = Password123$
+
 ###
 GET http://localhost:3000 HTTP/1.1
 
-###
-GET http://localhost:3000/auth?username=admisn&password=Password123! HTTP/1.1
-h-Custom: asdfjhsdkjfh
+# ########################################## #
+# ### USER ################################# #
+# ########################################## #
 
-### ----- USER -------------------------------
-GET http://localhost:3000/users HTTP/1.1
-
-###
-GET http://localhost:3000/users/me HTTP/1.1
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDc5OGVkNTk2ZTA0YmI0NzYwYjc4MSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTMzMTk0MiwiZXhwIjoxNzQ1MzYwNzQyfQ.Bk5NQFLJwuZM0t2HVm9CtN4nz2yTP3MeTBk67dtoW3c
-
-###
-POST http://localhost:3000/users HTTP/1.1
-content-type: application/json
-
-{
-    "email": "janeq.doe@gmail.com",
-    "password": "pass123",
-    "firstName": "Jane",
-    "lastName": "Doe"
-}
-
-###
-PUT http://localhost:3000/users/68025012135b4c8b5523bbb9 HTTP/1.1
-content-type: application/json
-
-{
-    "firstName": "Jane"
-}
-
-###
-DELETE http://localhost:3000/users/6802545da626dab16f7cb884 HTTP/1.1
-
-###
+### -- LOGIN ---------------------------------
 POST http://localhost:3000/users/login HTTP/1.1
 content-type: application/json
 
 {
-    "email": "jane.doe@gmail.com",
-    "password": "pass123"
+    "email": "john.doe@gmail.com",
+    "password": "{{fake_password}}"
 }
 
-###
-POST http://localhost:3000/users/logout HTTP/1.1
+### -- LIST USERS ----------------------------
+GET http://localhost:3000/users HTTP/1.1
+Authorization: bearer {{token}}
 
+### -- MY PROFILE ----------------------------
+GET http://localhost:3000/users/me HTTP/1.1
+Authorization: bearer {{token}}
 
+### -- CREATE USER ---------------------------
+POST http://localhost:3000/users HTTP/1.1
+Authorization: bearer {{token}}
+content-type: application/json
+
+{
+    "email": "janek.doe@gmail.com",
+    "password": "{{fake_password}}",
+    "firstName": "John",
+    "lastName": "Doe"
+}
+
+### -- UPDATE USER ---------------------------
+PUT http://localhost:3000/users/68093a53fccd62c669d3de3b HTTP/1.1
+Authorization: bearer {{token}}
+content-type: application/json
+
+{
+    "firstName": "Jane",
+    "role": "admin"
+}
+
+### -- DELETE USER ---------------------------
+DELETE http://localhost:3000/users/68093b98fccd62c669d3de44 HTTP/1.1
+Authorization: bearer {{token}}

@@ -5,6 +5,7 @@ import listUsersController from "../../controllers/users/list-users.controller.j
 const route: FastifyPluginAsync = async (fastify) => {
     fastify.get(
         '/',
+        { onRequest: [fastify.authenticate, fastify.adminAuthorized] },
         listUsersController
     )}
 
